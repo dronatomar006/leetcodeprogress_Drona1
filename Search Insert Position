@@ -1,0 +1,26 @@
+class Solution {
+public:
+    int searchInsert(vector<int>& nums, int target) {
+        int left = 0;
+        int right = nums.size() - 1;
+
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+
+            if (nums[mid] == target)
+                return mid;
+            else if (nums[mid] < target)
+                left = mid + 1;
+            else
+                right = mid - 1;
+        }
+
+        return left;
+    }
+};
+
+Intuition: Since the array is sorted, binary search can quickly find the target or its correct position.
+Algorithm: Compare the middle element and eliminate half of the search space each time.
+Key Idea: When the loop ends, left is the insertion position.
+Time Complexity: O(log n)
+Space Complexity: O(1).
