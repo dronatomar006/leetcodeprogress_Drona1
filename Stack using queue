@@ -1,0 +1,45 @@
+class MyQueue {
+public:
+    stack<int> s1, s2;
+
+    MyQueue() {}
+
+    void push(int x) {
+        while (!s1.empty()) {
+            s2.push(s1.top());
+            s1.pop();
+        }
+
+        s1.push(x);
+
+        while (!s2.empty()) {
+            s1.push(s2.top());
+            s2.pop();
+        }
+    }
+
+    int pop() {
+        int x = s1.top();
+        s1.pop();
+        return x;
+    }
+
+    int peek() {
+        return s1.top();
+    }
+
+    bool empty() {
+        return s1.empty();
+    }
+};
+
+
+
+Intuition: A queue follows FIFO, while a stack follows LIFO. We use two stacks to rearrange elements so the oldest element stays on top.
+Algorithm: Move all elements from s1 to s2, insert the new element into s1, then move everything back.
+Push: New element is placed at the bottom of s1.
+Pop: Remove the top element of s1, which is the oldest element.
+Peek: Return the top element of s1 without removing it.
+Empty: Check whether s1 is empty.
+Time Complexity: O(n) for push, O(1) for pop, O(1) for peek.
+Space Complexity: O(n).
