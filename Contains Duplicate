@@ -1,0 +1,29 @@
+class Solution {
+public:
+    bool containsDuplicate(vector<int>& nums) {
+        unordered_set<int> seen;
+
+        for (int num : nums) {
+            if (seen.count(num))
+                return true;
+
+            seen.insert(num);
+        }
+
+        return false;
+    }
+};
+
+/*Intuition:
+Use a set to keep track of numbers already seen. If a number appears again, a duplicate exists.
+
+Algorithm:
+
+Create an empty set.
+Traverse the array one element at a time.
+If the current number is already in the set, return true.
+Otherwise, insert it into the set.
+If traversal finishes without finding a duplicate, return false.
+
+Time Complexity: O(n)
+Space Complexity: O(n) */
